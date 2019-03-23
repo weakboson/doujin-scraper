@@ -1,0 +1,9 @@
+{
+  "name": "dmm-scraper",
+  "version": "1.0.0",
+  "description": "dmm title and author scraper",
+  "main": "index.js",
+  "author": "weakboson",
+  "license": "MIT",
+  "private": true
+}
