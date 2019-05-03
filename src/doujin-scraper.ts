@@ -22,6 +22,8 @@ class DoujinScraper {
       sales.forEach((node) => title.removeChild(node))
       return title.textContent.trim()
     })
+    await page.screenshot({ path: `./ss/${this.cid}.png` })
+    await page.close()
   
     return new Promise(resolve => resolve(this))
   }
