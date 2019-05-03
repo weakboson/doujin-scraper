@@ -1,10 +1,12 @@
-# dmm-scraper
+# doujin-scraper
 
 ## dmm doujin の構造
 
 ### url
 
-`https://www.dmm.co.jp/dc/doujin/-/detail/=/cid={item_id}`
+```js
+`https://www.dmm.co.jp/dc/doujin/-/detail/=/cid=${cid}`
+```
 
 ### title
 
@@ -21,3 +23,22 @@ const titleText = title.textContent.trim()
 const circleText = document.querySelector('.circleName__txt').textContent
 ```
 
+## DLsite の構造
+
+### url
+
+```js
+`https://www.dlsite.com/maniax/work/=/product_id/${productId}.html`
+```
+
+### title
+
+```js
+const title = document.querySelector('#work_name').textContent
+```
+
+### circle
+
+```js
+const circle = document.querySelector('.maker_name').textContent
+```
