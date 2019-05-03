@@ -16,6 +16,7 @@ function stdin(): Array<string> {
 
 (async () => {
   const cids = stdin()
+
   const browser = await puppeteer.launch({
     args: [
       '--no-sandbox',
@@ -23,11 +24,9 @@ function stdin(): Array<string> {
     ]
   })
 
-  const doujin = new Doujin(browser)
-  
-  Promise.all(cids.map(cid => doujin.basename(cid)))
-    .then(async bns => {
-      bns.forEach(bn => console.log(bn))
+  Promise.all(cids.map(cid => (new Doujin(browser, cid).fetch())))
+    .then(async doujins => {
+      doujins.forEach(doujin => console.log(`${doujin.cid}\t${doujin.basename}`))
       await browser.close()
     })
 })()
