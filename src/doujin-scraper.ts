@@ -13,7 +13,7 @@ class DoujinScraper {
 
   async fetch(): Promise<DoujinScraper> {
     const page = await this.browser.newPage()
-    await page.goto(`https://www.dmm.co.jp/dc/doujin/-/detail/=/cid=${this.cid}`)
+    await page.goto(`https://www.dmm.co.jp/dc/doujin/-/detail/=/cid=${this.cid}`, { timeout: 60 * 10 * 1000 })
   
     this.circle = await page.$eval('.circleName__txt', el => el.textContent)
   
