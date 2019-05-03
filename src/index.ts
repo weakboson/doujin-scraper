@@ -2,7 +2,7 @@ import * as puppeteer from 'puppeteer'
 import Doujin from './doujin-scraper'
 import * as readline from 'readline'
 
-function stdin(): Array<string> {
+function stdin(): string[] {
   const reader = readline.createInterface({
     input: process.stdin
   })
