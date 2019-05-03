@@ -24,9 +24,9 @@ function stdin(): string[] {
     ]
   })
 
-  Promise.all(cids.map(cid => (new Doujin(browser, cid).fetch())))
-    .then(async doujins => {
-      doujins.forEach(doujin => console.log(`${doujin.cid}\t${doujin.basename}`))
-      await browser.close()
-    })
+  for (let i = 0; i < cids.length; i++) {
+    const doujin = await (new Doujin(browser, cids[i])).fetch();
+    console.log(`${doujin.cid}\t${doujin.basename}`)
+  }
+  await browser.close()
 })()
