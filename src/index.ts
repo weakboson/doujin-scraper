@@ -1,24 +1,33 @@
 import * as puppeteer from 'puppeteer'
+import Doujin from './doujin-scraper'
+import * as readline from 'readline'
 
-(async() => {
-    const browser = await puppeteer.launch({
-        args: [
-          '--no-sandbox',
-          '--disable-setuid-sandbox'
-        ]
-    });
-    const page = await browser.newPage()
-    await page.goto('https://www.dmm.co.jp/dc/doujin/-/detail/=/cid=d_153800')
+function stdin(): Array<string> {
+  const reader = readline.createInterface({
+    input: process.stdin
+  })
+  
+  const buf = []
+  
+  reader.on('line', (line) => buf.push(line.trim()))
 
-    const circleText = await page.$eval('.circleName__txt', el => el.textContent)
-    console.log(`circleText: ${circleText}`)
+  return buf
+}
 
-    const titleText = await page.$eval('.productTitle__txt', title => {
-      const sale = title.querySelector('span')
-      title.removeChild(sale)
-      return title.textContent.trim()
+(async () => {
+  const cids = stdin()
+  const browser = await puppeteer.launch({
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox'
+    ]
+  })
+
+  const doujin = new Doujin(browser)
+  
+  Promise.all(cids.map(cid => doujin.basename(cid)))
+    .then(async bns => {
+      bns.forEach(bn => console.log(bn))
+      await browser.close()
     })
-    console.log(`titleText: ${titleText}`)
-    
-    browser.close()
-})();
+})()
