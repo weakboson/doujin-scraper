@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'fileutils'
 
-BASEDIR = "/mnt/chromeos/PlayFiles/Documents/work"
+BASEDIR = "/mnt/chromeos/MyFiles/Downloads"
 
 STDIN.each do |line|
   cid, basename = line.chomp.split("\t")
