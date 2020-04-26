@@ -1,6 +1,15 @@
 # doujin-scraper
 
-## dmm doujin の構造
+## Usage
+
+```shell
+# ダウンロード済みファイルからサークルと名前のリストを作成
+bin/scrape-dmm.sh
+# リストを元にリネーム
+bin/rename-dmm.sh
+```
+
+## FANZA 同人の構造
 
 ### url
 
@@ -23,7 +32,7 @@ const titleText = title.textContent.trim()
 const circleText = document.querySelector('.circleName__txt').textContent
 ```
 
-## DLsite の構造
+## DLsite maniax の構造
 
 ### url
 
