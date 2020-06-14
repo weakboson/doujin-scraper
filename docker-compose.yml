@@ -1,0 +1,8 @@
+version: "2.0"
+services:
+  puppeteer:
+    build:
+      context: container/puppeteer
+    volumes:
+    - .:/app
+    working_dir: /app
