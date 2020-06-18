@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-GID=$(id -g ${USER})
+source base.sh
 
 docker-compose build
 docker-compose run --rm -u ${UID}:${GID} puppeteer yarn install
