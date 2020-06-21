@@ -1,2 +1,5 @@
 #!/usr/bin/env bash
-cat data/dmm-map.txt| bin/rename_dlfile.rb
+set -eu
+source bin/base.sh
+
+cat data/dmm-map.txt| docker-compose run --rm -u ${UID}:${GID} ruby bin/rename_dlfile.rb
