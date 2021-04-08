@@ -15,6 +15,15 @@ class DoujinScraper {
     const page = await this.browser.newPage()
     await page.goto(`https://www.dmm.co.jp/dc/doujin/-/detail/=/cid=${this.cid}`, { timeout: 60 * 10 * 1000 })
   
+    const click_url = page.url()
+
+    if ( click_url.match(/age_check/)) {
+      await Promise.all([
+        page.click('.ageCheck__link--r18'),
+        page.waitForNavigation()
+      ])
+    }
+
     this.circle = await page.$eval('.circleName__txt', el => el.textContent)
   
     this.title = await page.$eval('.productTitle__txt', title => {
