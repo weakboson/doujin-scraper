@@ -1,24 +1,22 @@
 #!/usr/bin/env ruby
 require 'fileutils'
 
-def substitute_special_letters(basename,
-                               special_letters)
-  substitute_name = basename
-  special_letters.each_key do |special_letter|
-    substitute_name = substitute_name.gsub(special_letter,
-                                           special_letters)
+SPECIAL_LETTERS_MAP = {
+  "/" => "\u2044",
+  ":" => "：" # 例えばコロンも対応するとしたら
+}
+def substitute_special_letters(original)
+  sub_name = original.dup
+  SPECIAL_LETTERS_MAP.each do |k, v|
+    sub_name.gsub!(k, v)
   end
-  return substitute_name
+  sub_name
 end
 
-
 BASEDIR = '/app/downloads'
-special_letters = { "/" => "\u2044"}
 
 STDIN.each do |line|
   cid, basename = line.chomp.split("\t")
   org = File.join(BASEDIR, "#{cid}.zip")
-  basename = substitute_special_letters(basename,
-                                       special_letters)
-  FileUtils.mv(org, File.join(BASEDIR, "#{basename}.zip")) if File.file?(org)
+  FileUtils.mv(org, File.join(BASEDIR, "#{substitute_special_letters(basename)}.zip")) if File.file?(org)
 end
