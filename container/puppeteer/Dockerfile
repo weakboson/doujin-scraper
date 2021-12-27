@@ -1,4 +1,4 @@
-FROM node:12.18.0-buster-slim
+FROM node:17.3.0-bullseye-slim
 
 RUN apt-get update \
   && apt-get install -y \
