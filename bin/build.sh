@@ -2,4 +2,4 @@
 set -eu
 source bin/base.sh
 
-docker-compose run --rm -u ${UID}:${GID} puppeteer yarn run tsc
+docker compose run --rm -u ${UID}:${GID} puppeteer yarn run tsc
