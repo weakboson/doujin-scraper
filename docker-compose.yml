@@ -4,17 +4,17 @@ services:
     build:
       context: container/puppeteer
     volumes:
-    - /etc/group:/etc/group:ro
-    - /etc/passwd:/etc/passwd:ro
-    - .:/app
+      - /etc/group:/etc/group:ro
+      - /etc/passwd:/etc/passwd:ro
+      - .:/app
     working_dir: /app
   ruby:
     image: ruby:3.1-rc-slim-buster
     volumes:
-    - .:/app
-    - /etc/group:/etc/group:ro
-    - /etc/passwd:/etc/passwd:ro
-    - ${BASEDIR}:/app/downloads
+      - .:/app
+      - /etc/group:/etc/group:ro
+      - /etc/passwd:/etc/passwd:ro
+      - ${BASEDIR}:/app/downloads
     working_dir: /app
     environment:
       LANG: ${LANG}
