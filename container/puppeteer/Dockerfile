@@ -1,4 +1,4 @@
-FROM node:17.3.0-bullseye-slim
+FROM node:18.15.0-bullseye-slim
 
 RUN apt-get update \
   && apt-get install -y \
