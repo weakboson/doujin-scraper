@@ -9,7 +9,7 @@ services:
       - .:/app
     working_dir: /app
   ruby:
-    image: ruby:3.2.0-slim-bullseye
+    image: ruby:3.2.2-slim-bullseye
     tty: true
     stdin_open: true
     volumes:
