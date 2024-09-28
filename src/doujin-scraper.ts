@@ -19,7 +19,7 @@ class DoujinScraper {
 
     if ( click_url.match(/age_check/)) {
       await Promise.all([
-        page.click('.ageCheck__link--r18'),
+        page.click('.css-w5doa7'),
         page.waitForNavigation()
       ])
     }
